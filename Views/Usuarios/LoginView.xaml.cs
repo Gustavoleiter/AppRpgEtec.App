@@ -21,20 +21,33 @@ namespace AppRpgEtec.Views.Usuarios
             if (isColorChanged)
             {
                 BackgroundColor = Color.FromRgb(255, 255, 255); // Cor padrão
-                cadastro.BackgroundColor = Color.FromRgb(0, 0, 0); // Cor do BoxView (se estiver usando)
-                btnAutenticar.BackgroundColor = Color.FromRgb(0, 0, 0);                            // Mude a cor dos elementos Entry e Button também
-                informacao.BackgroundColor =Color.FromRgb(0, 0 , 0); 
+                user.BackgroundColor = Color.FromRgb(0, 0, 0);
+                user.TextColor = Color.FromRgb(255, 255, 255);
+                cadastro.TextColor = Color.FromRgb(0, 0, 0);
+                btnAutenticar.BackgroundColor = Color.FromRgb(0, 0, 0);// Mude a cor dos elementos Entry e Button também
+                btnAutenticar.TextColor = Color.FromRgb(255, 255, 255);
+                informacao.TextColor = Color.FromRgb(0, 0, 0);
+                informacao.BackgroundColor = Color.FromRgb(255, 255, 255);
                 senha.BackgroundColor = Color.FromRgb(0, 0, 0);
                 mudarCor.BackgroundColor = Color.FromRgb(0, 0, 0);
+                mudarCor.TextColor = Color.FromRgb(255, 255, 255);
             }
             else
             {
                 BackgroundColor = Color.FromRgb(0, 0 , 0); // LightBlue (RGB values)
-                cadastro.BackgroundColor = Color.FromRgb(255, 255, 255); // Cor do BoxView (se estiver usando)
+                user.TextColor = Color.FromRgb(0, 0, 0);
+                user.BackgroundColor = Color.FromRgb(255, 255, 255);
+                senha.BackgroundColor = Color.FromRgb(255, 255, 255);
                 btnAutenticar.BackgroundColor = Color.FromRgb(255, 255, 255);                                                    // Mude a cor dos elementos Entry e Button também
-                informacao.BackgroundColor = Color.FromRgb(255, 255, 255);
+                btnAutenticar.TextColor = Color.FromRgb(0, 0, 0);
                 senha.BackgroundColor = Color.FromRgb(255, 255, 255);
                 mudarCor.BackgroundColor = Color.FromRgb(255, 255, 255);
+                mudarCor.TextColor = Color.FromRgb(0, 0, 0);
+                informacao.TextColor = Color.FromRgb(255, 255, 255);
+                informacao.BackgroundColor = Color.FromRgb(0, 0, 0);
+                cadastro.TextColor = Color.FromRgb(255, 255, 255);
+
+
             }
 
             isColorChanged = !isColorChanged;
