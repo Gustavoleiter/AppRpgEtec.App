@@ -26,9 +26,9 @@ namespace AppRpgEtec.Views.Usuarios
                 cadastro.TextColor = Color.FromRgb(0, 0, 0);
                 btnAutenticar.BackgroundColor = Color.FromRgb(0, 0, 0);// Mude a cor dos elementos Entry e Button também
                 btnAutenticar.TextColor = Color.FromRgb(255, 255, 255);
-                informacao.TextColor = Color.FromRgb(0, 0, 0);
-                informacao.BackgroundColor = Color.FromRgb(255, 255, 255);
+               informacao.TextColor = Color.FromRgb(0, 0, 0);
                 senha.BackgroundColor = Color.FromRgb(0, 0, 0);
+                senha.TextColor = Color.FromRgb(255, 255, 255);
                 mudarCor.BackgroundColor = Color.FromRgb(0, 0, 0);
                 mudarCor.TextColor = Color.FromRgb(255, 255, 255);
             }
@@ -38,13 +38,13 @@ namespace AppRpgEtec.Views.Usuarios
                 user.TextColor = Color.FromRgb(0, 0, 0);
                 user.BackgroundColor = Color.FromRgb(255, 255, 255);
                 senha.BackgroundColor = Color.FromRgb(255, 255, 255);
+                senha.TextColor = Color.FromRgb(0, 0, 0);
                 btnAutenticar.BackgroundColor = Color.FromRgb(255, 255, 255);                                                    // Mude a cor dos elementos Entry e Button também
                 btnAutenticar.TextColor = Color.FromRgb(0, 0, 0);
                 senha.BackgroundColor = Color.FromRgb(255, 255, 255);
                 mudarCor.BackgroundColor = Color.FromRgb(255, 255, 255);
                 mudarCor.TextColor = Color.FromRgb(0, 0, 0);
                 informacao.TextColor = Color.FromRgb(255, 255, 255);
-                informacao.BackgroundColor = Color.FromRgb(0, 0, 0);
                 cadastro.TextColor = Color.FromRgb(255, 255, 255);
 
 
