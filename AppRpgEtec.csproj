@@ -49,12 +49,31 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Services\Personagens\**" />
 	  <AndroidResource Remove="Views\NovaPasta\**" />
+	  <Compile Remove="Services\Personagens\**" />
 	  <Compile Remove="Views\NovaPasta\**" />
+	  <EmbeddedResource Remove="Services\Personagens\**" />
 	  <EmbeddedResource Remove="Views\NovaPasta\**" />
+	  <MauiCss Remove="Services\Personagens\**" />
 	  <MauiCss Remove="Views\NovaPasta\**" />
+	  <MauiXaml Remove="Services\Personagens\**" />
 	  <MauiXaml Remove="Views\NovaPasta\**" />
+	  <None Remove="Services\Personagens\**" />
 	  <None Remove="Views\NovaPasta\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Images\add.svg" />
+	  <None Remove="Resources\Images\camera.svg" />
+	  <None Remove="Resources\Images\etec_cps.svg" />
+	  <None Remove="Resources\Images\exit.svg" />
+	  <None Remove="Resources\Images\home.svg" />
+	  <None Remove="Resources\Images\info.svg" />
+	  <None Remove="Resources\Images\menuarmas.svg" />
+	  <None Remove="Resources\Images\menudisputas.svg" />
+	  <None Remove="Resources\Images\menupersonagens.svg" />
+	  <None Remove="Resources\Images\menuusuarios.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -63,17 +82,27 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="AboutView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="DescriptionView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Disputas\ListagemView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Personagens\ListagemView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Usuarios\CadastroView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Usuarios\ListagemView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Usuarios\LoginView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Services\Personagens\" />
-	  <Folder Include="Views\Personagens\" />
 	</ItemGroup>
 
 </Project>
