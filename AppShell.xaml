@@ -16,7 +16,7 @@
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="40"></RowDefinition>
                 </Grid.RowDefinitions>
-                <FlexLayout Grid.Row="0" Direction="Row" AlignItems="Center" >
+                <!--<FlexLayout Grid.Row="0" Direction="Row" AlignItems="Center" >
                     <Frame Padding="0" CornerRadius="40"
 HeightRequest="80" WidthRequest="80" >
                         <Image Source="has_logo_transparente.svg"/>
@@ -25,7 +25,7 @@ HeightRequest="80" WidthRequest="80" >
                         <Label Text="App RPG Etec" FontAttributes="Bold" FontSize="Medium" />
                         <Label Text="Disciplina PAM-II"/>
                     </VerticalStackLayout>
-                </FlexLayout>
+                </FlexLayout>-->
             </Grid>
         </DataTemplate>
     </Shell.FlyoutHeaderTemplate>
@@ -33,7 +33,13 @@ HeightRequest="80" WidthRequest="80" >
         <ShellContent Title="Usuários" Icon="menuusuario.svg"
                   ContentTemplate="{DataTemplate viewsUsuarios:ListagemView}"/>
         <ShellContent Title="Home" Icon="home.svg"
-                  ContentTemplate="{DataTemplate viewsUsuarios:ListagemView}"/>
+                  ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage"/>
+        <Tab Title="Usuários" Route="usuarios" Icon="menuusuarios.svg">
+            <ShellContent Title="Usuários"
+                      ContentTemplate="{DataTemplate viewsUsuarios:ListagemView}"/>
+            <ShellContent Title="Tempo Real"
+                      ContentTemplate="{DataTemplate viewsUsuarios:LocalizacaoView}" />
+        </Tab>
         <ShellContent Title="Personagens" Icon="menupersonagens.svg"
                   ContentTemplate="{DataTemplate viewsPersonagens:ListagemView}"/>
         <ShellContent Title="Disputas" Icon="menudisputas.svg"

@@ -10,7 +10,7 @@ HeightRequest="{OnPlatform Android=190, iOS=220}"
 Padding="0" HasShadow="false" CornerRadius="10">
                 <Grid>
                     <Image Source="dotnet_bot.svg"/>
-                    <FlexLayout Direction="Row" Margin="20" AlignItems="Stretch">
+                    <!--<FlexLayout Direction="Row" Margin="20" AlignItems="Stretch">
                         <Label Text="RPG App" FlexLayout.Grow="1" FontAttributes="Bold"
 FontSize="20" VerticalTextAlignment="Center"/>
                         <FlexLayout FlexLayout.Grow="2" Direction="Column"
@@ -18,7 +18,7 @@ AlignItems="End" JustifyContent="Center">
                             <Label Text="Usuários" FontSize="20"/>
                             <Button Style="{StaticResource WhiteButtonSmall}" Text="VER"/>
                         </FlexLayout>
-                    </FlexLayout>
+                    </FlexLayout>-->
                 </Grid>
             </Frame>
 
