@@ -49,17 +49,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <AndroidResource Remove="Services\Personagens\**" />
 	  <AndroidResource Remove="Views\NovaPasta\**" />
-	  <Compile Remove="Services\Personagens\**" />
 	  <Compile Remove="Views\NovaPasta\**" />
-	  <EmbeddedResource Remove="Services\Personagens\**" />
 	  <EmbeddedResource Remove="Views\NovaPasta\**" />
-	  <MauiCss Remove="Services\Personagens\**" />
 	  <MauiCss Remove="Views\NovaPasta\**" />
-	  <MauiXaml Remove="Services\Personagens\**" />
 	  <MauiXaml Remove="Views\NovaPasta\**" />
-	  <None Remove="Services\Personagens\**" />
 	  <None Remove="Views\NovaPasta\**" />
 	</ItemGroup>
 
