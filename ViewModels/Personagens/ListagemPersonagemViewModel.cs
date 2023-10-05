@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace AppRpgEtec.ViewModels.Personagens
 {
@@ -22,7 +23,10 @@ namespace AppRpgEtec.ViewModels.Personagens
             Personagens = new ObservableCollection<Personagem>();
 
             _ = ObterPersonagens();
+            NovoPersonagem = new Command(async () => { await ExibirCadastroPersonagem(); });
         }
+
+        public ICommand NovoPersonagem { get; }
 
         public async Task ObterPersonagens()
         {
@@ -34,6 +38,19 @@ namespace AppRpgEtec.ViewModels.Personagens
             catch (Exception ex) 
             {
                 await Application.Current.MainPage.DisplayAlert("Ops", ex.Message + "Detalhes: " + ex.InnerException, "ok");
+            }
+        }
+
+        public async Task ExibirCadastroPersonagem()
+        {
+            try
+            {
+                await Shell.Current.GoToAsync("cadPersonagemView");
+            }
+            catch (Exception ex) 
+            {
+                await Application.Current.MainPage
+                    .DisplayAlert("Ops", ex.Message + "Detalhes: " + ex.InnerException, "Ok");
             }
         }
     }
