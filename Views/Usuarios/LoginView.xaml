@@ -6,7 +6,7 @@
              BackgroundColor="Black">
     <Grid VerticalOptions="CenterAndExpand" BackgroundColor="DarkGray" WidthRequest="450" HeightRequest="500">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="10"/>
             <RowDefinition Height="Auto"/>
