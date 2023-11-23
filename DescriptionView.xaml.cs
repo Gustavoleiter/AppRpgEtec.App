@@ -1,6 +1,6 @@
 namespace AppRpgEtec;
 
-public partial class DescriptionView : ContentView
+public partial class DescriptionView : ContentPage
 {
 	public DescriptionView()
 	{

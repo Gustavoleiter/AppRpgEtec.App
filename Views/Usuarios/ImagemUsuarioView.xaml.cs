@@ -2,7 +2,7 @@ using AppRpgEtec.ViewModels.Usuarios;
 
 namespace AppRpgEtec.Views.Usuarios;
 
-public partial class ImagemUsuarioView : ContentView
+public partial class ImagemUsuarioView : ContentPage
 {
 	ImagemUsuarioViewModel viewModel;
 

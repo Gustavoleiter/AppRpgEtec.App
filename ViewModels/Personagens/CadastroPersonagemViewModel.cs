@@ -2,9 +2,11 @@
 using AppRpgEtec.Models;
 using AppRpgEtec.Models.Enuns;
 using AppRpgEtec.Services.Personagens;
+using Microsoft.Maui.Graphics.Converters;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,7 +44,7 @@ namespace AppRpgEtec.ViewModels.Personagens
             pService = new PersonagemService(token);
             _ = ObterClasses();
 
-            SalvarCommand = new Command(async () => { await SalvarPersonagem(); });
+            SalvarCommand = new Command(async () => { await SalvarPersonagem(); }, () => ValidarCampos());
             CancelarCommand = new Command(async => CancelarCadastro());
         }
 
@@ -86,6 +88,7 @@ namespace AppRpgEtec.ViewModels.Personagens
             {
                 nome = value;
                 OnPropertyChanged();
+                ((Command)SalvarCommand).ChangeCanExecute();
             }
         }
         public int PontosVida
@@ -95,6 +98,7 @@ namespace AppRpgEtec.ViewModels.Personagens
             {
                 pontosVida = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(CadastroHabilitado));
             }
         }
         public int Forca
@@ -251,6 +255,24 @@ namespace AppRpgEtec.ViewModels.Personagens
                     .DisplayAlert("Ops", ex.Message + "Detalhes: " + ex.InnerException, "Ok");
             }
         }
+
+        public bool CadastroHabilitado
+        {
+            get
+            {
+                return (PontosVida > 0);
+            }
+        }
+
+        public bool ValidarCampos()
+        {
+            return !string.IsNullOrEmpty(nome)
+                && CadastroHabilitado
+                && Forca != 0
+                && Defesa != 0;
+        }
+
+        
     }
 
 }

@@ -1,12 +1,8 @@
 ﻿using AppRpgEtec.Models;
 using AppRpgEtec.Services.Usuarios;
 using Plugin.Media;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Threading.Tasks;
 
 namespace AppRpgEtec.ViewModels.Usuarios
 {
@@ -22,6 +18,8 @@ namespace AppRpgEtec.ViewModels.Usuarios
             AbrirGaleriaCommand = new Command(AbrirGaleria);
             SalvarImagemCommand = new Command(SalvarImagem);
             FotografarCommand = new Command(Fotografar);
+
+            CarregarUsuario();
         }
 
         private UsuarioService uService;
@@ -31,19 +29,15 @@ namespace AppRpgEtec.ViewModels.Usuarios
         public ICommand FotografarCommand { get; }
 
 
-        public ImagemUsuarioViewModel()
-        {
-            string token= Preferences.Get("UsuarioToken", string.Empty);
-            uService = new UsuarioService(token);
-        }
 
         private ImageSource fonteImagem;
 
         public ImageSource FonteImagem
         {
-            get { return fonteImagem;}
+            get { return fonteImagem; }
             set
-            { fonteImagem = value;
+            {
+                fonteImagem = value;
                 OnPropertyChanged();
 
             }
@@ -60,48 +54,30 @@ namespace AppRpgEtec.ViewModels.Usuarios
                 OnPropertyChanged();
             }
         }
-        
+
 
         public async void Fotografar()
         {
-            try 
+            try
             {
-                await CrossMedia.Current.Initialize();
-
-                if (CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+                if(MediaPicker.Default.IsCaptureSupported)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Sem Câmera", "A câmera não está disponível.", "Ok");
-                    await Task.FromResult(false);
-                }
+                    FileResult photo = await MediaPicker.Default.CapturePhotoAsync();
 
-                string fileName = String.Format("{0:ddMMyyy_HHmmss}", DateTime.Now) + ".jpg";
-
-                var file = await CrossMedia.Current.TakePhotoAsync
-                    (new Plugin.Media.Abstractions.StoreCameraMediaOptions
+                    if (photo != null) 
                     {
-                        Directory = "Fotos",
-                        PhotoSize = Plugin.Media.Abstractions.PhotoSize.Small,
-                        Name = fileName
-                    });
-
-                if (file != null) 
-                {
-                    await Task.FromResult(false);
-
-                    MemoryStream ms = null;
-                    using (ms = new MemoryStream()) 
-                    {
-                     var stream = file.GetStream();
-                     stream.CopyTo(ms); 
+                        using (Stream sourceStream = await photo.OpenReadAsync())
+                        {
+                            using (MemoryStream ms = new MemoryStream()) 
+                            {
+                            Foto = ms.ToArray();
+                                FonteImagem = ImageSource.FromStream(() => new MemoryStream(ms.ToArray()));
+                            }
+                        }
                     }
-                    FonteImagem = ImageSource.FromStream(() => file.GetStream());
-                    Foto = ms.ToArray();
                 }
-
-
-
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 await Application.Current.MainPage
                     .DisplayAlert("Informação", ex.Message + " Detalhes: " + ex.InnerException, "Ok");
@@ -116,14 +92,14 @@ namespace AppRpgEtec.ViewModels.Usuarios
                 u.Foto = foto;
                 u.Id = Preferences.Get("UsuarioId", 0);
 
-                if (await uService.PutFotoUsuarioAsync(u) != 0) 
+                if (await uService.PutFotoUsuarioAsync(u) != 0)
                 {
                     await Application.Current.MainPage.DisplayAlert("Mensagem", "Dados salvos com sucesso!", "Ok");
                     await App.Current.MainPage.Navigation.PopAsync();
                 }
                 else { throw new Exception("Erro ao tentar atualizar imagem"); }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 await Application.Current.MainPage
                        .DisplayAlert("Informação", ex.Message + " Detalhes: " + ex.InnerException, "Ok");
@@ -134,24 +110,45 @@ namespace AppRpgEtec.ViewModels.Usuarios
         {
             try
             {
-                await CrossMedia.Current.Initialize();
-                if (!CrossMedia.Current.IsPickPhotoSupported)
+                if (MediaPicker.Default.IsCaptureSupported)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Galeria não suportada",
-                        "Não existe permissão para acessar a galeria.", "Ok");
-                    return;
+                    FileResult photo = await MediaPicker.Default.PickPhotoAsync();
 
+                    if (photo != null)
+                    {
+                        using (Stream sourceStream = await photo.OpenReadAsync())
+                        {
+                            using (MemoryStream ms = new MemoryStream())
+                            {
+                                Foto = ms.ToArray();
+                                FonteImagem = ImageSource.FromStream(() => new MemoryStream(ms.ToArray()));
+                            }
+                        }
+                    }
                 }
-                var file = await
-
             }
-            catch (Exception ex) 
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage
+                    .DisplayAlert("Informação", ex.Message + " Detalhes: " + ex.InnerException, "Ok");
+            }
+        }
+
+        public async void CarregarUsuario()
+        {
+            try
+            {
+                int usuarioId = Preferences.Get("UsuarioId", 0);
+                Usuario u = await uService.GetUsuarioAsync(usuarioId);
+
+                Foto = u.Foto;
+            }
+            catch ( Exception ex)
             {
                 await Application.Current.MainPage
                            .DisplayAlert("Informação", ex.Message + " Detalhes: " + ex.InnerException, "Ok");
             }
         }
 
-        
     }
 }
